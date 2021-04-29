@@ -1,4 +1,57 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@500;600;700&display=swap");
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role=list],
+ol[role=list] {
+  list-style: none;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+*::before,
+*::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* Colors */
+/* Fonts */
+/* Media query breakpoints */
+/* Mixin to manage responsive breakpoints */
+html {
+  font-size: 14px;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Red Hat Text", sans-serif;
+}
+
 @font-face {
   font-family: "icomoon";
   src: url("../fonts/icomoon.eot?4vkod1");
