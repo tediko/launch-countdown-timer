@@ -1,0 +1,22 @@
+@use '../utilities/' as *;
+
+.countdown {
+    $root: &;
+    background: url('../img/pattern-hills.svg'), url('../img/bg-stars.svg'), linear-gradient(180deg, #191A24 17%, #1e1f29 51%, #2b212d 83%);
+    background-repeat: no-repeat;
+    background-position: bottom center, center center;
+    background-size: contain;
+    min-height: 100vh;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    &__heading {
+        color: $c-white;
+    }
+}
