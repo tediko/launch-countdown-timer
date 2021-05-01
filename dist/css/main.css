@@ -116,12 +116,13 @@ i {
   flex-direction: column;
   width: 19.2vw;
   height: 8vw;
-  perspective: 550px;
+  perspective: 200px;
 }
 @media (min-width: 769px) {
   .timer__card {
     width: 150px;
     height: 70px;
+    perspective: 550px;
   }
 }
 .timer__card.running .timer__card-part--front::before {

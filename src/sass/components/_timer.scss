@@ -17,11 +17,12 @@
         flex-direction: column;
         width: 19.2vw;
         height: 8vw;
-        perspective: 550px;
+        perspective: 200px;
 
         @include breakpoint('md') {
             width: 150px;
             height: 70px;
+            perspective: 550px;
         }
 
         &.running {
