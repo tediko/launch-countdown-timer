@@ -11,12 +11,16 @@
     &__container {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        padding-top: 136px;
         align-items: center;
         height: 100vh;
     }
 
     &__heading {
         color: $c-white;
+        font-size: 23px;
+        letter-spacing: 7px;
+        text-transform: uppercase;
+        text-align: center;
     }
 }

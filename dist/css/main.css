@@ -101,16 +101,28 @@ i {
 
 .timer {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   height: 200px;
+  margin-top: 106px;
+}
+@media (min-width: 769px) {
+  .timer {
+    gap: 30px;
+  }
 }
 .timer__card {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 200px;
-  height: 94px;
+  width: 19.2vw;
+  height: 8vw;
   perspective: 550px;
+}
+@media (min-width: 769px) {
+  .timer__card {
+    width: 150px;
+    height: 70px;
+  }
 }
 .timer__card.running .timer__card-part--front::before {
   animation: frontFlipDown 0.6s ease-in-out;
@@ -121,16 +133,27 @@ i {
 .timer__card-bg {
   position: absolute;
   top: 10px;
-  left: 0;
-  width: 100%;
+  left: 1.1vw;
+  width: 17vw;
   height: 200%;
   background: #191a24;
   border-radius: 10px;
 }
+@media (min-width: 769px) {
+  .timer__card-bg {
+    left: 1px;
+    width: calc(100% - 2px);
+  }
+}
 .timer__card-part {
-  font-size: 8rem;
+  font-size: clamp(2rem, 7.4vw, 6rem);
   font-weight: 700;
   color: #fb6087;
+}
+@media (min-width: 769px) {
+  .timer__card-part {
+    font-size: 6.5rem;
+  }
 }
 .timer__card-part::before, .timer__card-part::after {
   position: absolute;
@@ -144,6 +167,7 @@ i {
   overflow: hidden;
 }
 .timer__card-part--front::before {
+  content: attr(data-timer-time1);
   align-items: flex-end;
   top: 0;
   background: url("../img/card-top.svg");
@@ -156,6 +180,7 @@ i {
   z-index: 3;
 }
 .timer__card-part--front::after {
+  content: attr(data-timer-time1);
   top: 100%;
   background: url("../img/card-bottom.svg");
   background-repeat: no-repeat;
@@ -190,12 +215,16 @@ i {
 .countdown__container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding-top: 136px;
   align-items: center;
   height: 100vh;
 }
 .countdown__heading {
   color: white;
+  font-size: 23px;
+  letter-spacing: 7px;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 /*# sourceMappingURL=main.css.map */
