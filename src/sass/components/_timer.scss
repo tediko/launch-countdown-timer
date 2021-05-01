@@ -44,14 +44,15 @@
 
     &__card-bg {
         position: absolute;
-        top: 10px;
+        top: 5px;
         left: 1.1vw;
         width: 17vw;
         height: 200%;
         background: $c-blue-blackish;
         border-radius: 10px;
-
+        
         @include breakpoint('md') {
+            top: 10px;
             left: 1px;
             width: calc(100% - 2px);
         }
