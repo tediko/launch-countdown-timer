@@ -115,11 +115,14 @@
             
             &::after {
                 top: 100%;
+                background-image: transparent;
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
                 transform-origin: top center;
                 transform: rotateX(0.5turn);
                 z-index: 2;
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
             }
         }
     }
