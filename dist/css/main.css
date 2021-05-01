@@ -242,6 +242,7 @@ i {
   padding-top: 136px;
   align-items: center;
   height: 100vh;
+  padding-bottom: 20px;
 }
 .countdown__heading {
   color: white;
@@ -249,6 +250,39 @@ i {
   letter-spacing: 7px;
   text-transform: uppercase;
   text-align: center;
+}
+.countdown__socials {
+  display: flex;
+  gap: 31px;
+}
+@media (min-width: 769px) {
+  .countdown__socials {
+    margin-top: 42.6vh;
+  }
+}
+.countdown__socials-link {
+  display: inherit;
+  text-decoration: none;
+  font-size: 1.8rem;
+  transition: transform 350ms ease-in;
+}
+.countdown__socials-link:focus {
+  outline: 2px dashed #fb6087;
+  outline-offset: 4px;
+}
+.countdown__socials-link:focus:not(:focus-visible) {
+  outline: none;
+}
+.countdown__socials-link:hover {
+  transform: rotate(360deg);
+}
+.countdown__socials-link:hover .countdown__socials-icon::before {
+  animation: iconhop 300ms ease-in forwards;
+}
+@keyframes iconhop {
+  to {
+    color: #fb6087;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

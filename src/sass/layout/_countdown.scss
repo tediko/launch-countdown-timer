@@ -19,6 +19,7 @@
         padding-top: 136px;
         align-items: center;
         height: 100vh;
+        padding-bottom: 20px;
     }
 
     &__heading {
@@ -27,5 +28,47 @@
         letter-spacing: 7px;
         text-transform: uppercase;
         text-align: center;
+    }
+    
+    &__socials {
+        display: flex;
+        gap: 31px;
+
+        @include breakpoint('md') {
+            margin-top: 42.6vh;
+        }
+    }
+    
+    &__socials-link {
+        display: inherit;
+        text-decoration: none;
+        font-size: 1.8rem;
+        transition: transform 350ms ease-in;
+
+        @include breakpoint('md') {
+            &:hover {
+                transform: rotate(360deg);
+                #{$root}__socials-icon::before {
+                    animation: iconhop 300ms ease-in forwards;
+    
+                    @keyframes iconhop {
+                        to {
+                            color: $c-red-soft;
+                        }
+                    }
+                }
+            }
+        }
+
+        &:focus {
+            outline: 2px dashed $c-red-soft;
+            outline-offset: 4px;
+        }
+        
+        // Browsers that don’t support :focus-visible use the focus styles defined in the :focus rule and ignore the second style rule completely (because :focus-visible is unknown to them).
+        // Browsers should now only indicate focus when it is helpful to the user - such as in cases where the user interacts with the page via a keyboard.
+        &:focus:not(:focus-visible) {
+            outline: none;
+        }
     }
 }
