@@ -1,23 +1,23 @@
 export default class Timer {
-    constructor(time, card) {
+    constructor(time, element) {
         this.time = time;
-        this.card = card;
+        this.element = element;
         if (!this.vars()) return false;
         this.setupEvents();
     }
 
     vars() {
         this.selectors = {
-            cards: this.card,
+            card: this.element,
             timerFront: 'data-timer-front',
             timerBack: 'data-timer-back',
             activeClass: 'running'
         }
 
-        this.cards = document.querySelector(`[${this.selectors.cards}]`);
-        this.timerFront = this.cards.querySelector(`[${this.selectors.timerFront}]`);
-        this.timerBack = this.cards.querySelector(`[${this.selectors.timerBack}]`);
-        if (!this.cards || !this.timerFront || !this.timerBack) return false;
+        this.card = document.querySelector(`[${this.selectors.card}]`);
+        this.timerFront = this.card.querySelector(`[${this.selectors.timerFront}]`);
+        this.timerBack = this.card.querySelector(`[${this.selectors.timerBack}]`);
+        if (!this.card || !this.timerFront || !this.timerBack) return false;
         
         this.isFlipping = false;
         this.duration = 500;
@@ -25,6 +25,7 @@ export default class Timer {
         this.nextTime = 0;
         this.countdown;
         this.firstAnimation = false;
+        this.initialTime = 0;
         return true;
     }
 
@@ -37,15 +38,16 @@ export default class Timer {
         this.then = this.now + (seconds * 1000);
         this.displayTimeLeft(seconds);
 
+        this.firstAnimation = true;
         this.countdown = setInterval(() => {
             this.secondsLeft = Math.round((this.then - Date.now()) / 1000);
 
+            // clearInterval when countdown is over.
             if (this.secondsLeft < 0) {
                 clearInterval(this.countdown);
                 return;
             }
 
-            this.firstAnimation = true;
             this.displayTimeLeft(this.secondsLeft);
         }, 1000)
     }
@@ -57,38 +59,34 @@ export default class Timer {
         this.reminderMinutes = seconds % 3600;
         this.minutes = Math.floor(this.reminderMinutes / 60);
         this.reminderSeconds = seconds % 60;   
-
         console.log({d: this.days, h: this.hours, m: this.minutes, s: this.reminderSeconds});
 
-        if (this.cards.dataset.timerCard == 'days') {
-            if (!this.firstAnimation) return;
-            this.clockNumber = this.timerFront.dataset.clockNum;
+        
+        if (!this.firstAnimation) return;
+        
+        this.cardDataset = this.card.dataset.timerCard;
+        if (this.cardDataset == 'days') {
             this.currentTime = `${this.days + 1}`;
-
-            if (this.clockNumber != this.currentTime) {
+            
+            if (this.initialTime != this.currentTime) {
                 this.nextTime = `${this.days}`;
                 this.flipDown(this.currentTime, this.nextTime);
             }
-        } else if (this.cards.dataset.timerCard == 'hours') {
-            if (!this.firstAnimation) return;
-            this.clockNumber = this.timerFront.dataset.clockNum;
+        } else if (this.cardDataset == 'hours') {
             this.currentTime = `${this.hours + 1}`;
-
-            if (this.clockNumber != this.currentTime) {
+            
+            if (this.initialTime != this.currentTime) {
                 this.nextTime = `${this.hours}`;
                 this.flipDown(this.currentTime, this.nextTime);
             }
-        } else if (this.cards.dataset.timerCard == 'minutes') {
-            if (!this.firstAnimation) return;
-            this.clockNumber = this.timerFront.dataset.clockNum;
+        } else if (this.cardDataset == 'minutes') {
             this.currentTime = `${this.minutes + 1}`;
-
-            if (this.clockNumber != this.currentTime) {
+            
+            if (this.initialTime != this.currentTime) {
                 this.nextTime = `${this.minutes}`;
                 this.flipDown(this.currentTime, this.nextTime);
             }
         } else {
-            if (!this.firstAnimation) return;
             this.currentTime = `${this.reminderSeconds + 1}`;
             this.nextTime = `${this.reminderSeconds}`;
             this.flipDown(this.currentTime, this.nextTime);
@@ -101,45 +99,47 @@ export default class Timer {
         this.isFlipping = true;
         this.setFrontTime(currentTime);
         this.setBackTime(nextTime);
-        this.cards.classList.add('running');
+        this.card.classList.add(`${this.selectors.activeClass}`);
     
         setTimeout(() => {
-            this.cards.classList.remove('running');
+            this.card.classList.remove(`${this.selectors.activeClass}`);
             this.isFlipping = false;
             this.setFrontTime(nextTime);
         }, this.duration)
     }
 
     setFrontTime(time) {
-        this.timerFront.dataset.clockNum = parseInt(time) + 1;
+        this.initialTime = parseInt(time) + 1;
 
-        if (this.cards.dataset.timerCard == 'hours') {
-            if (time > 23) {
-                this.timerFront.dataset.timerTime = '59';
-                this.timerFront.dataset.timerTime1 = '00';
-            } else if (time >= 10) {
-                this.timerFront.dataset.timerTime = time;
-                this.timerFront.dataset.timerTime1 = time;
-            } else if (time < 10 && time > 0) {
-                this.timerFront.dataset.timerTime = `0${time}`;
-                this.timerFront.dataset.timerTime1 = `0${time}`;
+        if (this.card.dataset.timerCard == 'days') {
+            if (time > 8) {
+                this.timerFront.dataset.timerFront = '00';
+            } else if (time >= 7) {
+                this.timerFront.dataset.timerFront = `0${time}`;
+            } else if (time < 7 && time > 0) {
+                this.timerFront.dataset.timerFront = `0${time}`;
             } else if (time == 0) {
-                this.timerFront.dataset.timerTime = `00`;
-                this.timerFront.dataset.timerTime1 = '00';
+                this.timerFront.dataset.timerFront = '00';
+            }
+        } else if (this.card.dataset.timerCard == 'hours') {
+            if (time > 23) {
+                this.timerFront.dataset.timerFront = '00';
+            } else if (time >= 10) {
+                this.timerFront.dataset.timerFront = time;
+            } else if (time < 10 && time > 0) {
+                this.timerFront.dataset.timerFront = `0${time}`;
+            } else if (time == 0) {
+                this.timerFront.dataset.timerFront = '00';
             }
         } else {
             if (time > 59) {
-                this.timerFront.dataset.timerTime = '59';
-                this.timerFront.dataset.timerTime1 = '00';
+                this.timerFront.dataset.timerFront = '00';
             } else if (time >= 10) {
-                this.timerFront.dataset.timerTime = time;
-                this.timerFront.dataset.timerTime1 = time;
+                this.timerFront.dataset.timerFront = time;
             } else if (time < 10 && time > 0) {
-                this.timerFront.dataset.timerTime = `0${time}`;
-                this.timerFront.dataset.timerTime1 = `0${time}`;
+                this.timerFront.dataset.timerFront = `0${time}`;
             } else if (time == 0) {
-                this.timerFront.dataset.timerTime = `00`;
-                this.timerFront.dataset.timerTime1 = '00';
+                this.timerFront.dataset.timerFront = '00';
             }
         }
         
@@ -147,13 +147,13 @@ export default class Timer {
     
     setBackTime(time) {
         if (time >= 59) {
-            this.timerBack.dataset.timerTime = '59';
+            this.timerBack.dataset.timerBack = '59';
         } else if (time >= 10) {
-            this.timerBack.dataset.timerTime = time;
+            this.timerBack.dataset.timerBack = time;
         } else if (time < 10 && time > 0) {
-            this.timerBack.dataset.timerTime = `0${time}`;
+            this.timerBack.dataset.timerBack = `0${time}`;
         } else if (time == 0) {
-            this.timerBack.dataset.timerTime = `00`;
+            this.timerBack.dataset.timerBack = `00`;
         }
     }
 }
