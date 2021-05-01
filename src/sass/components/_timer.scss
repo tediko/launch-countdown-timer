@@ -3,16 +3,26 @@
 .timer {
     $root: &;
     display: flex;
-    gap: 20px;
+    gap: 10px;
     height: 200px;
+    margin-top: 106px;
+
+    @include breakpoint('md') {
+        gap: 30px;
+    }
 
     &__card {
         position: relative;
         display: flex;
         flex-direction: column;
-        width: 200px;
-        height: 94px;
+        width: 19.2vw;
+        height: 8vw;
         perspective: 550px;
+
+        @include breakpoint('md') {
+            width: 150px;
+            height: 70px;
+        }
 
         &.running {
             #{$root}__card-part {
@@ -34,17 +44,26 @@
     &__card-bg {
         position: absolute;
         top: 10px;
-        left: 0;
-        width: 100%;
+        left: 1.1vw;
+        width: 17vw;
         height: 200%;
         background: $c-blue-blackish;
         border-radius: 10px;
+
+        @include breakpoint('md') {
+            left: 1px;
+            width: calc(100% - 2px);
+        }
     }
 
     &__card-part {
-        font-size: 8rem;
+        font-size: clamp(2rem, 7.4vw, 6rem);
         font-weight: 700;
         color: $c-red-soft;
+
+        @include breakpoint('md') {
+            font-size: 6.5rem;
+        }
 
         &::before, &::after {
             position: absolute;
@@ -60,6 +79,7 @@
 
         &--front {
             &::before {
+                content: attr(data-timer-time1);
                 align-items: flex-end;
                 top: 0;
                 background: url('../img/card-top.svg');
@@ -73,6 +93,7 @@
             }
 
             &::after {
+                content: attr(data-timer-time1);
                 top: 100%;
                 background: url('../img/card-bottom.svg');
                 background-repeat: no-repeat;
@@ -91,7 +112,7 @@
                 color: transparentize($c-red-soft, 0.1);
                 z-index: 1;
             }
-
+            
             &::after {
                 top: 100%;
                 background-repeat: no-repeat;
