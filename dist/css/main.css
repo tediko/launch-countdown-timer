@@ -204,6 +204,24 @@ i {
   transform: rotateX(0.5turn);
   z-index: 2;
 }
+.timer__card-name {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 238%;
+  width: 100%;
+  color: #8486a9;
+  font-size: clamp(0.6rem, 2.3vw, 1rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+@media (min-width: 769px) {
+  .timer__card-name {
+    font-size: 1rem;
+    letter-spacing: 7px;
+  }
+}
 
 .countdown {
   background: url("../img/pattern-hills.svg"), url("../img/bg-stars.svg"), linear-gradient(180deg, #191A24 17%, #1e1f29 51%, #2b212d 83%);

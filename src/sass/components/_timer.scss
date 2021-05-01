@@ -123,4 +123,22 @@
             }
         }
     }
+
+    &__card-name {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        top: 238%;
+        width: 100%;
+        color: $c-blue-grayish;
+        font-size: clamp(0.6rem, 2.3vw, 1rem);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+
+        @include breakpoint('md') {
+            font-size: 1rem;
+            letter-spacing: 7px;
+        }
+    }
 }
