@@ -160,7 +160,7 @@ i {
   position: absolute;
   display: flex;
   justify-content: center;
-  content: attr(data-timer-time);
+  content: attr(data-timer-back);
   left: 0;
   width: 100%;
   height: 100%;
@@ -168,7 +168,7 @@ i {
   overflow: hidden;
 }
 .timer__card-part--front::before {
-  content: attr(data-timer-time1);
+  content: attr(data-timer-front);
   align-items: flex-end;
   top: 0;
   background: url("../img/card-top.svg");
@@ -181,7 +181,7 @@ i {
   z-index: 3;
 }
 .timer__card-part--front::after {
-  content: attr(data-timer-time1);
+  content: attr(data-timer-front);
   top: 100%;
   background: url("../img/card-bottom.svg");
   background-repeat: no-repeat;
