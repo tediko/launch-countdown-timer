@@ -58,6 +58,8 @@ export default class Timer {
         this.minutes = Math.floor(this.reminderMinutes / 60);
         this.reminderSeconds = seconds % 60;   
 
+        console.log({d: this.days, h: this.hours, m: this.minutes, s: this.reminderSeconds});
+
         if (this.cards.dataset.timerCard == 'days') {
             if (!this.firstAnimation) return;
             this.clockNumber = this.timerFront.dataset.clockNum;
@@ -110,15 +112,37 @@ export default class Timer {
 
     setFrontTime(time) {
         this.timerFront.dataset.clockNum = parseInt(time) + 1;
-        if (time >= 59) {
-            this.timerFront.dataset.timerTime = '59';
-        } else if (time >= 10) {
-            this.timerFront.dataset.timerTime = time;
-        } else if (time < 10 && time > 0) {
-            this.timerFront.dataset.timerTime = `0${time}`;
-        } else if (time == 0) {
-            this.timerFront.dataset.timerTime = `00`;
+
+        if (this.cards.dataset.timerCard == 'hours') {
+            if (time > 23) {
+                this.timerFront.dataset.timerTime = '59';
+                this.timerFront.dataset.timerTime1 = '00';
+            } else if (time >= 10) {
+                this.timerFront.dataset.timerTime = time;
+                this.timerFront.dataset.timerTime1 = time;
+            } else if (time < 10 && time > 0) {
+                this.timerFront.dataset.timerTime = `0${time}`;
+                this.timerFront.dataset.timerTime1 = `0${time}`;
+            } else if (time == 0) {
+                this.timerFront.dataset.timerTime = `00`;
+                this.timerFront.dataset.timerTime1 = '00';
+            }
+        } else {
+            if (time > 59) {
+                this.timerFront.dataset.timerTime = '59';
+                this.timerFront.dataset.timerTime1 = '00';
+            } else if (time >= 10) {
+                this.timerFront.dataset.timerTime = time;
+                this.timerFront.dataset.timerTime1 = time;
+            } else if (time < 10 && time > 0) {
+                this.timerFront.dataset.timerTime = `0${time}`;
+                this.timerFront.dataset.timerTime1 = `0${time}`;
+            } else if (time == 0) {
+                this.timerFront.dataset.timerTime = `00`;
+                this.timerFront.dataset.timerTime1 = '00';
+            }
         }
+        
     }
     
     setBackTime(time) {
