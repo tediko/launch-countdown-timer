@@ -64,7 +64,7 @@
         color: $c-red-soft;
 
         @include breakpoint('md') {
-            font-size: 6.5rem;
+            font-size: 5.5rem;
         }
 
         &::before, &::after {

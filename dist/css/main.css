@@ -171,7 +171,7 @@ i {
 }
 @media (min-width: 769px) {
   .timer__card-part {
-    font-size: 6.5rem;
+    font-size: 5.5rem;
   }
 }
 .timer__card-part::before, .timer__card-part::after {
