@@ -80,6 +80,8 @@
         }
 
         &--front {
+            // Top card falling effect, displays current time. 
+            // element hide when it position is in half of card because backface-visibility. 
             &::before {
                 content: attr(data-timer-front);
                 align-items: flex-end;
@@ -93,7 +95,7 @@
                     -webkit-backface-visibility: hidden; 
                 z-index: 3;
             }
-
+            // Static element to display current/next time on bottom half of the card.
             &::after {
                 content: attr(data-timer-front);
                 top: 100%;
@@ -105,6 +107,7 @@
         }
         
         &--back {
+            // Static element to display current/next time on top half of the card.
             &::before {
                 bottom: 0;
                 align-items: flex-end;
@@ -114,7 +117,9 @@
                 color: transparentize($c-red-soft, 0.1);
                 z-index: 1;
             }
-            
+            // Top card falling effect, displays next time. 
+            // element shows when it pass half of card because backface-visibility.
+            // Initially element is hidden because we rotate it so it shows backface first. 
             &::after {
                 top: 100%;
                 background-repeat: no-repeat;
