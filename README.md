@@ -16,7 +16,7 @@
 ## Overview
 
 ### Intro
-Hello! This is my solution to [Launch countdown timer - Frontend Mentor](https://www.frontendmentor.io/challenges/launch-countdown-timer-N0XkGfyz-) challenge. It was really tough challenge. This was my second time i tried to finish this challenge, this time successfully.
+Hello! This is my solution to [Launch countdown timer - Frontend Mentor](https://www.frontendmentor.io/challenges/launch-countdown-timer-N0XkGfyz-) challenge. It was really tough challenge. This was my second time i tried to finish it, this time successfully.
 
 ### The challenge
 
