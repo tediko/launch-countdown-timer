@@ -43,6 +43,7 @@ ol[role=list] {
 /* Fonts */
 /* Media query breakpoints */
 /* Mixin to manage responsive breakpoints */
+/* Animations for timer */
 @keyframes frontFlipDown {
   to {
     transform: rotateX(-0.5turn);
@@ -52,6 +53,12 @@ ol[role=list] {
   to {
     background-image: url("../img/card-bottom.svg");
     transform: rotateX(0turn);
+  }
+}
+/* Animations for countdown__socials */
+@keyframes iconRotate {
+  to {
+    color: #fb6087;
   }
 }
 html {
@@ -285,12 +292,7 @@ i {
     transform: rotate(360deg);
   }
   .countdown__socials-link:hover .countdown__socials-icon::before {
-    animation: iconhop 300ms ease-in forwards;
-  }
-  @keyframes iconhop {
-    to {
-      color: #fb6087;
-    }
+    animation: iconRotate 300ms ease-in forwards;
   }
 }
 .countdown__socials-link:focus {

@@ -49,13 +49,7 @@
             &:hover {
                 transform: rotate(360deg);
                 #{$root}__socials-icon::before {
-                    animation: iconhop 300ms ease-in forwards;
-    
-                    @keyframes iconhop {
-                        to {
-                            color: $c-red-soft;
-                        }
-                    }
+                    animation: iconRotate 300ms ease-in forwards;
                 }
             }
         }

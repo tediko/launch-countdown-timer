@@ -1,5 +1,6 @@
 @use '../utilities/variables' as *;
 
+/* Animations for timer */
 @keyframes frontFlipDown {
     to {
         transform: rotateX(-0.5turn);
@@ -10,5 +11,12 @@
     to {
         background-image: url('../img/card-bottom.svg');
         transform: rotateX(0turn);
+    }
+}
+
+/* Animations for countdown__socials */
+@keyframes iconRotate {
+    to {
+        color: $c-red-soft;
     }
 }
