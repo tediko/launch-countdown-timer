@@ -11,12 +11,14 @@ export default class Timer {
             card: this.element,
             timerFront: 'data-timer-front',
             timerBack: 'data-timer-back',
+            screenReaderEl: 'data-sr',
             activeClass: 'running'
         }
 
         this.card = document.querySelector(`[${this.selectors.card}]`);
         this.timerFront = this.card.querySelector(`[${this.selectors.timerFront}]`);
         this.timerBack = this.card.querySelector(`[${this.selectors.timerBack}]`);
+        this.screenReaderEl = document.querySelector(`[${this.selectors.screenReaderEl}]`);
         if (!this.card || !this.timerFront || !this.timerBack) return false;
         
         this.isFlipping = false;
@@ -83,6 +85,7 @@ export default class Timer {
             this.currentTime = `${this.minutes + 1}`;
             
             if (this.initialTime != this.currentTime) {
+                this.screenReaderUpdateTime();
                 this.nextTime = `${this.minutes}`;
                 this.flipDown(this.currentTime, this.nextTime);
             }
@@ -155,5 +158,10 @@ export default class Timer {
         } else if (time == 0) {
             this.timerBack.dataset.timerBack = `00`;
         }
+    }
+
+    // Update countdown time for screen readers
+    screenReaderUpdateTime() {
+        this.screenReaderEl.innerHTML = `Time to launch: ${this.days} days ${this.hours} hours ${this.minutes} minutes`
     }
 }
