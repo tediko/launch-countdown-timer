@@ -12,7 +12,9 @@
   <section class="countdown">
     <div class="countdown__container">
       <h1 class="countdown__heading">We're launching soon</h1>
-      <div class="timer">
+      <!-- Screen Reader class for countdown time updated in JS -->
+      <span class="sr-only" aria-live="polite" data-sr></span>
+      <div class="timer" aria-hidden="true">
         <!-- Days card -->
         <div class="timer__card" data-timer-card="days">
           <span class="timer__card-bg"></span>
