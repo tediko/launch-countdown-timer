@@ -5,7 +5,7 @@ export default class Timer {
         if (!this.vars()) return false;
         this.setupEvents();
     }
-
+    
     vars() {
         this.selectors = {
             card: this.element,
@@ -14,13 +14,14 @@ export default class Timer {
             screenReaderEl: 'data-sr',
             activeClass: 'running'
         }
-
+        
         this.card = document.querySelector(`[${this.selectors.card}]`);
         this.timerFront = this.card.querySelector(`[${this.selectors.timerFront}]`);
         this.timerBack = this.card.querySelector(`[${this.selectors.timerBack}]`);
         this.screenReaderEl = document.querySelector(`[${this.selectors.screenReaderEl}]`);
         if (!this.card || !this.timerFront || !this.timerBack) return false;
         
+        this.cardDataset = this.card.dataset.timerCard;
         this.isFlipping = false;
         this.duration = 500;
         this.currentTime = 0;
@@ -61,12 +62,9 @@ export default class Timer {
         this.reminderMinutes = seconds % 3600;
         this.minutes = Math.floor(this.reminderMinutes / 60);
         this.reminderSeconds = seconds % 60;   
-        console.log({d: this.days, h: this.hours, m: this.minutes, s: this.reminderSeconds});
-
         
         if (!this.firstAnimation) return;
         
-        this.cardDataset = this.card.dataset.timerCard;
         if (this.cardDataset == 'days') {
             this.currentTime = `${this.days + 1}`;
             
@@ -114,7 +112,7 @@ export default class Timer {
     setFrontTime(time) {
         this.initialTime = parseInt(time) + 1;
 
-        if (this.card.dataset.timerCard == 'days') {
+        if (this.cardDataset == 'days') {
             if (time > 8) {
                 this.timerFront.dataset.timerFront = '00';
             } else if (time >= 7) {
@@ -124,7 +122,7 @@ export default class Timer {
             } else if (time == 0) {
                 this.timerFront.dataset.timerFront = '00';
             }
-        } else if (this.card.dataset.timerCard == 'hours') {
+        } else if (this.cardDataset == 'hours') {
             if (time > 23) {
                 this.timerFront.dataset.timerFront = '00';
             } else if (time >= 10) {
