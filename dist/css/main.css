@@ -265,11 +265,6 @@ i {
   height: 100vh;
   padding-bottom: 20px;
 }
-@media (orientation: landscape) {
-  .countdown__container {
-    padding-top: 20px;
-  }
-}
 .countdown__heading {
   color: white;
   font-size: 23px;
