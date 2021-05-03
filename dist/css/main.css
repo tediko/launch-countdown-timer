@@ -265,6 +265,11 @@ i {
   height: 100vh;
   padding-bottom: 20px;
 }
+@media (orientation: landscape) {
+  .countdown__container {
+    padding-top: 20px;
+  }
+}
 .countdown__heading {
   color: white;
   font-size: 23px;
@@ -281,6 +286,7 @@ i {
 .countdown__socials {
   display: flex;
   gap: 31px;
+  margin-top: 20vh;
 }
 @media (min-width: 769px) {
   .countdown__socials {

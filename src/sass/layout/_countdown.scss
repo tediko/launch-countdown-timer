@@ -20,6 +20,10 @@
         align-items: center;
         height: 100vh;
         padding-bottom: 20px;
+
+        @media (orientation: landscape) {
+            padding-top: 20px;
+        }
     }
 
     &__heading {
@@ -38,6 +42,7 @@
     &__socials {
         display: flex;
         gap: 31px;
+        margin-top: 20vh;
 
         @include breakpoint('md') {
             margin-top: 42.6vh;
